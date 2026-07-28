@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臺北兩天一夜之旅 - 行程手冊</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #16a085;
+            --bg-color: #f8f9fa;
+            --text-color: #333333;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft JhengHei", 創新微軟正黑體, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            margin: 10px 0 0 0;
+            font-size: 16px;
+        }
+
+        .day-section {
+            margin-bottom: 50px;
+        }
+
+        .day-title {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        th {
+            background-color: #edf2f7;
+            color: var(--primary-color);
+            font-weight: bold;
+            text-align: left;
+            padding: 14px 16px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background-color: #fdfdfd;
+        }
+
+        .order-col {
+            text-align: center;
+            font-weight: bold;
+            color: var(--secondary-color);
+            width: 60px;
+        }
+
+        .location-col {
+            font-weight: bold;
+            width: 180px;
+            color: #2d3748;
+        }
+
+        .link-col {
+            width: 130px;
+        }
+
+        .time-col {
+            width: 140px;
+            white-space: nowrap;
+        }
+
+        .map-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .map-btn:hover {
+            background-color: #11806a;
+        }
+
+        .reminder-list {
+            margin: 0;
+            padding-left: 20px;
+            color: #555555;
+        }
+
+        .reminder-list li {
+            margin-bottom: 6px;
+        }
+
+        /* 針對列印 PDF 進行優化 */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .map-btn {
+                border: 1px solid var(--secondary-color);
+                color: var(--secondary-color) !important;
+                background: transparent;
+                font-size: 11px;
+            }
+            tr {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>臺北兩天一夜之旅</h1>
+    </div>
+
+    <!-- 第一天行程 -->
+    <div class="day-section">
+        <div class="day-title">第一天：士林天文樂園放電與北車商圈行程</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center;">順序</th>
+                    <th>地點與活動項目</th>
+                    <th>地圖導航</th>
+                    <th>營業時間 (週六)</th>
+                    <th>行程路線建議與貼心提醒</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="order-col">1</td>
+                    <td class="location-col">臺北車站<br><span style="font-size: 12px; font-weight: normal; color: #718096;">(會合與寄放行李)</span></td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北車站" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">06:00 - 24:00</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>迎接從台中北上的爸媽。</li>
+                            <li>建議先將大行李寄放在站內的電子置物櫃，全家輕裝出發。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">2</td>
+                    <td class="location-col">您指定的午餐餐廳</td>
+                    <td class="link-col"><a href="https://maps.app.goo.gl/4Vt1MHEmEEaBTVV67" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">請參考該店公告</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>抵達臺北後的第一餐，全家人一起悠閒享用美味的蛋奶素午餐。</li>
+                            <li>幫長輩接風，提供充足的時間讓長輩坐著歇息與聊天。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">3</td>
+                    <td class="location-col">臺市立天文科學教育館</td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北市立天文科學教育館" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">09:00 - 20:00</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li><strong>下午首要行程</strong>。全室內強冷氣避暑，無障礙設施極為完善。</li>
+                            <li>5歲姪子可畅玩多媒體互動裝置與宇宙探險車，長輩漫步毫不費力。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">4</td>
+                    <td class="location-col">臺北市兒童新樂園</td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北市儿童新乐园" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">09:00 - 20:00</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li><strong>視天文館進度彈性前往</strong>（就在天文館正旁邊）。</li>
+                            <li>傍晚烈日退去後入園，體感最涼爽舒適，陪孩子暢玩溫和設施。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">5</td>
+                    <td class="location-col">臺北車站<br><span style="font-size: 12px; font-weight: normal; color: #718096;">(吃晚餐 & 拿行李)</span></td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北車站" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">微風商圈至 22:00</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>搭車返回臺北車站，取回中午寄放的重行李。</li>
+                            <li>直接在車站二樓微風商圈或周邊輕鬆尋找蛋奶素晚餐。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">6</td>
+                    <td class="location-col">臺北凱旋酒店<br><span style="font-size: 12px; font-weight: normal; color: #718096;">(入住休息)</span></td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北凯旋酒店" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">24小時櫃檯服務</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>前往位於內湖的飯店辦理入住手續。</li>
+                            <li>全家人舒服地洗澡、睡覺放鬆體力，結束充的第一天。</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 第二天行程 -->
+    <div class="day-section">
+        <div class="day-title">第二天：內科早餐、故宮散步與華山文創市集行程</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center;">順序</th>
+                    <th>地點與活動項目</th>
+                    <th>地圖導航</th>
+                    <th>營業時間 (週日)</th>
+                    <th>行程路線建議與貼心提醒</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="order-col">1</td>
+                    <td class="location-col">臺北凱旋酒店<br><span style="font-size: 12px; font-weight: normal; color: #718096;">(辦理退房)</span></td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北凯旋酒店" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">24小時櫃檯服務</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>早上辦理退房手續。</li>
+                            <li><strong>將所有大行李箱先免費寄放在飯店櫃檯</strong>，全家輕裝出發。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">2</td>
+                    <td class="location-col">Dreamers Coffee<br>內科店</td>
+                    <td class="link-col"><a href="https://maps.app.goo.gl/4Qmsig8a43hq1LNv8" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">09:00 - 19:00</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li><strong>蛋奶素友善</strong>。在明亮舒適的店內享用輕食早餐與香醇咖啡。</li>
+                            <li><strong>請在此順便外帶幾份蛋奶素麵包或輕食</strong>，作為中下午的野餐點心。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">3</td>
+                    <td class="location-col">國立故宮博物院<br><span style="font-size: 12px; font-weight: normal; color: #718096;">(院區戶外 / 至善園)</span></td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=国立故宫博物院" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">09:00 - 17:00</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>從內科搭乘時計程車快速直達故宮。</li>
+                            <li>帶爸媽與姪子在古典優美的至善園或林蔭下漫步，愜意享用外帶午餐。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">4</td>
+                    <td class="location-col">臺北凱旋酒店<br><span style="font-size: 12px; font-weight: normal; color: #718096;">(取回行李)</span></td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北凯旋酒店" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">24小時櫃檯服務</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>結束故宮戶外行程後，搭車返回內湖飯店。</li>
+                            <li>取回早上寄存的所有大行李箱，隨後正式出發前往華山。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">5</td>
+                    <td class="location-col">捷運忠孝新生站<br>＆ 華山文創園區</td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=华山1914文创产业园区" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">11:00 - 21:00</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li><strong>最完美動線</strong>：抵達後先將重行李寄放在<strong>捷運忠孝新生站1號出口</strong>的置物櫃。</li>
+                            <li>全家輕鬆逛華山週末創意市集、看暑期展覽，或去「木育森林」室內放電。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">6</td>
+                    <td class="location-col">晚餐時間<br><span style="font-size: 12px; font-weight: normal; color: #718096;">(華山周邊或北車)</span></td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北車站" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">商圈餐廳至 22:00</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>於華山園區內蔬食餐廳或搭乘1站捷運回臺北車站享用美味的蛋奶素晚餐。</li>
+                            <li>作為本次父親節家族聚會的溫馨收尾餐點。</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="order-col">7</td>
+                    <td class="location-col">臺北車站<br><span style="font-size: 12px; font-weight: normal; color: #718096;">(進站與送車)</span></td>
+                    <td class="link-col"><a href="https://www.google.com/maps/search/?api=1&query=台北車站" target="_blank" class="map-btn">開啟地圖</a></td>
+                    <td class="time-col">依火車班次營運</td>
+                    <td>
+                        <ul class="reminder-list">
+                            <li>從捷運站取回寄放的行李，隨後前往臺北車站月台。</li>
+                            <li>協助並歡送爸媽從容進站，帶著滿滿的孫子笑容與幸福回憶返回臺中。</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
