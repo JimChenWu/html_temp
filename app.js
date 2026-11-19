@@ -46,8 +46,12 @@
   }
   function renderContents(day) {
     const mode=states.get(day.id), container=document.querySelector(`#${day.id} .day-contents`);
-    container.innerHTML=(mode==='both'?version(day,'sun')+version(day,'rain'):version(day,mode))+(day.heavy?heavy(day):'');
+    container.innerHTML=(mode==='both'?version(day,'sun')+version(day,'rain'):version(day,mode))+(day.heavy?heavy(day):'')+(day.id==='d1'?parkingOptions():'');
     document.querySelectorAll(`#${day.id} [data-day-mode]`).forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.dayMode===mode)));
+  }
+  function parkingOptions() {
+    const search = query => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+    return `<details class="heavy parking-options"><summary>D1沿途短停與停車｜先看5–10分鐘，累了直接去民宿</summary><div class="heavy-content"><p>停車資料補查：2026/11/19。沿南迴挑2–3站；看景5–10分鐘，加找車位、步行與幼兒上下車，每站預留15–25分鐘，多良30–45分鐘。此處為可刪選項，沒有把全部景點塞進原時間表。</p><p><b>優先：9420或大武濱海公園擇一。</b>多良有精神、能安全停車才走；太麻里或華源再擇一。若16:00才到大武，保留一次必要休息後直往夏雪居；已多停或玩得久，就刪後續點。固定18:00晚餐前要留入住與進市區時間，不為拍照壓縮休息。雨天不增加露天觀光站。</p><p>「有停車設施」不代表當日有空位、免費或可全天使用；「路邊」也不代表合法停車已確認。依現場標誌、標線、管制及出入口判斷，白線不是停車許可；找不到安全合法位置就跳過，不在橋上、平交道口或車道停拍。</p><div class="attraction-list">${trip.parking.map(p=>`<article><h4>${link(search(p.query),p.name)}</h4><span class="tag ${p.kind==='有停車設施'?'':'caution'}">${esc(p.kind)}</span><p>${esc(p.note)}</p><p>停留預留｜${esc(p.stay)}</p><div class="inline-links">${link(search(p.query),'景點地圖')}${p.parkingQuery?link(search(p.parkingQuery),'停車設施搜尋'):''}${p.source?link(p.source,'停車資料來源'):''}</div></article>`).join('')}</div><p>地圖為具名搜尋，未取得固定車位座標或實地勘查；備選點的費率、步行距離與當日管制未核實者不填確定數字。金崙觀景臺、天空之鏡等名稱相近的點，請核對地圖照片與入口再導航。</p></div></details>`;
   }
   function renderDays() {
     document.getElementById('days').innerHTML=trip.days.map((day,index)=>`<article class="day-card" id="${day.id}"><header class="day-banner"><figure><img src="assets/${day.image}" loading="lazy" alt="${esc(day.photo)}"></figure><div class="day-banner-copy"><div class="day-number"><span>DAY ${String(index+1).padStart(2,'0')}</span><span>2026 / ${day.date} 週${day.weekday}</span></div><h3>${esc(day.title)}</h3><p>${esc(day.theme)}</p><p>駕駛量｜${esc(day.drive)}</p></div></header><div class="day-photo-note">${esc(day.photo)}</div><div class="day-controls" role="group" aria-label="${day.date}天氣方案"><span>這一天</span><button type="button" data-day="${day.id}" data-day-mode="sun" aria-pressed="true">☀ 晴天</button><button type="button" data-day="${day.id}" data-day-mode="rain" aria-pressed="false">☂ 雨天</button><button type="button" data-day="${day.id}" data-day-mode="both" aria-pressed="false">兩種都看</button></div><div class="day-contents"></div><aside class="day-note">${esc(day.note)}</aside></article>`).join('');
