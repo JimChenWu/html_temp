@@ -3,6 +3,8 @@
   'use strict';
   const trip = window.TRIP;
   const P = trip.places;
+  // Planned northbound visits; branch roads are optional and return to the main road.
+  const parkingOrder = [0,1,2,3,4,5,6,9,8,7,11,10,12].map(i=>trip.parking[i]);
   const states = new Map(trip.days.map(day => [day.id, 'sun']));
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const href = value => esc(new URL(value).href);
@@ -26,7 +28,7 @@
   function timeline(rows) {
     return `<ol class="timeline">${rows.map(([time,id,title,note,from,drive]) => {
       const transit = id === 'taipei' || id === 'syosyo';
-      return `<li><span class="time">${esc(time)}</span><h4>${esc(title)}</h4>${link(map(id),P[id].name,'place-link')}<p>${esc(note)}</p><p class="travel">${esc(transit ? '搭車預留' : '開車預留')}｜${esc(drive)}${id==='home'?'':' · 停留依上方時間'}</p>${actions(id,from,transit?'transit':'driving')}</li>`;
+      return `<li><span class="time">${esc(time)}</span><h4>${esc(title)}</h4>${link(map(id),P[id].name,'place-link')}<p>${esc(note)}</p><p class="travel">${esc(transit ? '搭車預留' : '開車預留')}｜${esc(drive)}${id==='home'?'':' · 停留依上方時間'}</p>${actions(id,from,transit?'transit':'driving')}${id==='southstops'?parkingOptions():''}</li>`;
     }).join('')}</ol>`;
   }
   function mealCard(day, row) {
@@ -48,6 +50,12 @@
     const mode=states.get(day.id), container=document.querySelector(`#${day.id} .day-contents`);
     container.innerHTML=(mode==='both'?version(day,'sun')+version(day,'rain'):version(day,mode))+(day.heavy?heavy(day):'');
     document.querySelectorAll(`#${day.id} [data-day-mode]`).forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.dayMode===mode)));
+  }
+  function parkingOptions() {
+    const search = query => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+    const homeRoute = query => link(`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(query)}&destination=${encodeURIComponent(P.home.query)}&travelmode=driving`,'此站到夏雪居');
+    const detours = new Set([2,5,7,8,9,10]);
+    return `<section class="parking-options" aria-label="南迴候選停靠順序"><h5 class="column-title">01–13 依規劃抵達順序選停</h5><p class="meal-hours">由南往北分區安排，繞入點須返回台9線；編號不代表全部必去。停車資料11/19補查、排序與主時間軸11/20更新。</p><ol class="south-stop-list">${parkingOrder.map((p,i)=>`<li class="meal-card"><h4>${String(i+1).padStart(2,'0')}｜${link(search(p.query),p.name)}</h4><span class="tag ${p.kind==='有停車設施'?'':'caution'}">${esc(p.kind)}</span>${detours.has(i)?'<p class="meal-hours">需轉入支路／聚落；看時間選停，不代表台9線直接經過入口。</p>':''}<p>${esc(p.note)}</p><p>停留預留｜${esc(p.stay)}</p><div class="inline-links">${link(search(p.query),'景點地圖')}${p.parkingQuery?link(search(p.parkingQuery),'停車設施搜尋'):''}${homeRoute(p.query)}${p.source?link(p.source,'停車資料來源'):''}</div></li>`).join('')}</ol><p class="meal-hours">有停車設施不保證空位、免費或全天使用。白線不是停車許可，依當日標誌、標線及管制停放；不占出入口、橋上、平交道口、車道或私人空地。沒有安全合法位置就跳過。地圖是具名搜尋，非實地勘查或固定車位座標。</p></section>`;
   }
   function renderDays() {
     document.getElementById('days').innerHTML=trip.days.map((day,index)=>`<article class="day-card" id="${day.id}"><header class="day-banner"><figure><img src="assets/${day.image}" loading="lazy" alt="${esc(day.photo)}"></figure><div class="day-banner-copy"><div class="day-number"><span>DAY ${String(index+1).padStart(2,'0')}</span><span>2026 / ${day.date} 週${day.weekday}</span></div><h3>${esc(day.title)}</h3><p>${esc(day.theme)}</p><p>駕駛量｜${esc(day.drive)}</p></div></header><div class="day-photo-note">${esc(day.photo)}</div><div class="day-controls" role="group" aria-label="${day.date}天氣方案"><span>這一天</span><button type="button" data-day="${day.id}" data-day-mode="sun" aria-pressed="true">☀ 晴天</button><button type="button" data-day="${day.id}" data-day-mode="rain" aria-pressed="false">☂ 雨天</button><button type="button" data-day="${day.id}" data-day-mode="both" aria-pressed="false">兩種都看</button></div><div class="day-contents"></div><aside class="day-note">${esc(day.note)}</aside></article>`).join('');
